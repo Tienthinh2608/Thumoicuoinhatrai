@@ -1,0 +1,1519 @@
+/* Thiệp nhà trai — nền be / ivory, accent giữ sắc đậm cho chữ & nút */
+
+.invite {
+  --pink-deep: #6b2d3c;
+  --pink-mid: #a04558;
+  --pink-soft: #ebe4d9;
+  --pink-bg: #e8e0d4;
+  --rose-gold: #7d6b55;
+  --cream: #f7f3eb;
+  --text: #3d2826;
+  --muted: rgba(61, 40, 38, 0.68);
+  --white: #ffffff;
+  --shadow: 0 20px 50px rgba(55, 42, 30, 0.09);
+  --shadow-sm: 0 2px 8px rgba(55, 42, 30, 0.05);
+  --shadow-lift: 0 12px 36px rgba(55, 42, 30, 0.11);
+  --radius: 20px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  font-family: 'Cormorant Garamond', 'Times New Roman', Georgia, serif;
+  color: var(--text);
+  background: var(--pink-bg);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.invite ::selection {
+  background: rgba(139, 115, 85, 0.22);
+  color: var(--text);
+}
+
+.invite * {
+  box-sizing: border-box;
+}
+
+/* Nội dung nổi trên lớp mây trang trí */
+.invite > header,
+.invite > section,
+.invite > footer {
+  position: relative;
+  z-index: 2;
+}
+
+/* Đám mây hồng bay vào khi mới vào trang */
+.invite__clouds {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.invite__cloud {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse 85% 70% at 35% 35%,
+    rgba(255, 252, 248, 0.95) 0%,
+    rgba(225, 212, 190, 0.5) 38%,
+    rgba(160, 130, 95, 0.16) 72%,
+    transparent 100%
+  );
+  box-shadow:
+    2.2rem 0.35rem 0 -0.4rem rgba(210, 195, 170, 0.4),
+    -1.8rem 0.2rem 0 -0.55rem rgba(200, 185, 160, 0.35),
+    1rem -0.6rem 0 -0.35rem rgba(245, 238, 226, 0.65);
+  opacity: 0;
+  filter: blur(0.8px);
+  animation: inviteCloudEnter 2.85s var(--ease) forwards;
+}
+
+.invite__cloud--a {
+  width: min(52vw, 260px);
+  height: min(30vw, 140px);
+  left: -8%;
+  top: 6%;
+  --cx: -35vw;
+  --cy: 8vh;
+  animation-delay: 0.05s;
+}
+
+.invite__cloud--b {
+  width: min(44vw, 200px);
+  height: min(24vw, 110px);
+  right: -12%;
+  top: 22%;
+  --cx: 38vw;
+  --cy: -5vh;
+  animation-delay: 0.35s;
+  animation-duration: 3.1s;
+}
+
+.invite__cloud--c {
+  width: min(48vw, 230px);
+  height: min(28vw, 125px);
+  left: -18%;
+  top: 42%;
+  --cx: -28vw;
+  --cy: -12vh;
+  animation-delay: 0.65s;
+  animation-duration: 2.95s;
+}
+
+.invite__cloud--d {
+  width: min(40vw, 180px);
+  height: min(22vw, 95px);
+  right: -6%;
+  top: 58%;
+  --cx: 32vw;
+  --cy: 10vh;
+  animation-delay: 0.45s;
+}
+
+.invite__cloud--e {
+  width: min(36vw, 165px);
+  height: min(20vw, 88px);
+  left: 18%;
+  bottom: 12%;
+  --cx: -22vw;
+  --cy: 18vh;
+  animation-delay: 0.85s;
+  animation-duration: 3.2s;
+}
+
+@keyframes inviteCloudEnter {
+  0% {
+    opacity: 0;
+    transform: translate3d(var(--cx, -80px), var(--cy, 40px), 0) scale(0.55);
+  }
+  45% {
+    opacity: 0.88;
+  }
+  100% {
+    opacity: 0.62;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+.invite__music {
+  position: fixed;
+  bottom: 1.25rem;
+  right: 1rem;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.62rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid rgba(100, 78, 55, 0.2);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--pink-deep);
+  cursor: pointer;
+  font-family: inherit;
+  box-shadow: var(--shadow-sm), 0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease), background 0.2s;
+}
+
+.invite__musicIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.28rem;
+  line-height: 1;
+}
+
+.invite__music:hover {
+  background: var(--white);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lift);
+}
+
+.invite__music:focus-visible {
+  outline: 2px solid var(--pink-mid);
+  outline-offset: 3px;
+}
+
+.invite__hero {
+  position: relative;
+  text-align: center;
+  padding: clamp(2.5rem, 8vw, 3.5rem) 1.25rem clamp(2rem, 5vw, 2.75rem);
+  background: radial-gradient(
+    ellipse 130% 90% at 50% -10%,
+    #fdfcfa 0%,
+    #f3ece2 38%,
+    #e8dfd2 72%,
+    var(--pink-bg) 100%
+  );
+  border-bottom: 1px solid rgba(90, 72, 52, 0.08);
+}
+
+.invite__heroPattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.45;
+  background-image: radial-gradient(circle at 18% 28%, rgba(139, 115, 85, 0.1) 0%, transparent 42%),
+    radial-gradient(circle at 82% 18%, rgba(120, 100, 75, 0.08) 0%, transparent 38%),
+    radial-gradient(ellipse 100% 60% at 50% 100%, rgba(232, 222, 205, 0.55) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+.invite__eyebrow {
+  position: relative;
+  z-index: 1;
+  font-size: 0.68rem;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--rose-gold);
+  margin: 0 0 1.1rem;
+  font-weight: 600;
+  opacity: 0.92;
+}
+
+/* Tên đôi: một dòng, màu hồng chủ đề */
+.invite__names {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto 0.85rem;
+  padding: 0 0.75rem;
+  max-width: 100%;
+  white-space: nowrap;
+  font-family: 'Alex Brush', 'Pinyon Script', 'Great Vibes', cursive;
+  font-size: clamp(1.85rem, 6.8vw, 4.35rem);
+  font-weight: 400;
+  font-style: normal;
+  font-synthesis: none;
+  line-height: 1.28;
+  letter-spacing: 0.03em;
+  word-spacing: 0.18em;
+  color: var(--pink-deep);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.85), 0 2px 20px rgba(80, 55, 40, 0.08);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.invite__heroPhoto {
+  position: relative;
+  z-index: 1;
+  margin: 0 auto 1.65rem;
+  max-width: min(100%, 21rem);
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 22px;
+  overflow: hidden;
+  line-height: 0;
+  box-shadow: 0 4px 6px -2px rgba(60, 45, 32, 0.07), 0 22px 48px -12px rgba(60, 45, 32, 0.14),
+    0 0 0 1px rgba(255, 255, 255, 0.65) inset;
+}
+
+.invite__heroPhoto img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s var(--ease);
+}
+
+.invite__heroPhoto:hover img {
+  transform: scale(1.03);
+}
+
+.invite__heroTimes {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.35rem;
+}
+
+.invite__timeBlock {
+  min-width: 4.75rem;
+  min-height: 3.35rem;
+  padding: 0.7rem 1.05rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #ffffff 0%, #faf7f0 100%);
+  border-radius: var(--radius);
+  border: 1px solid rgba(100, 80, 55, 0.12);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.95) inset, var(--shadow-sm), 0 14px 32px rgba(60, 45, 32, 0.07);
+  font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  transition: transform 0.22s var(--ease), box-shadow 0.22s var(--ease);
+}
+
+.invite__timeBlock:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.95) inset, 0 8px 24px rgba(60, 45, 32, 0.1),
+    0 20px 40px rgba(60, 45, 32, 0.08);
+}
+
+.invite__timeBlock--date {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15rem;
+}
+
+.invite__timeBig {
+  font-size: clamp(1.75rem, 5vw, 2.45rem);
+  font-weight: 700;
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: 'lnum' 1, 'tnum' 1;
+  color: var(--pink-deep);
+  line-height: 1;
+  letter-spacing: 0.04em;
+}
+
+.invite__dot {
+  font-family: inherit;
+  font-size: clamp(1.55rem, 4.5vw, 2.1rem);
+  font-weight: 700;
+  color: var(--pink-mid);
+  margin: 0 0.04rem;
+  opacity: 0.88;
+  line-height: 1;
+}
+
+.invite__lunar {
+  position: relative;
+  z-index: 1;
+  font-size: 0.98rem;
+  font-weight: 500;
+  color: var(--muted);
+  margin: 0;
+  font-style: italic;
+  letter-spacing: 0.02em;
+  max-width: 26rem;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.5;
+}
+
+.invite__section {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: clamp(1.75rem, 5vw, 2.35rem) 1.35rem;
+  text-align: center;
+}
+
+.invite__section--cream {
+  background: var(--cream);
+}
+
+.invite__section--quote {
+  background: linear-gradient(180deg, var(--pink-soft) 0%, var(--cream) 100%);
+}
+
+.invite__h2 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin: 0.25rem 0;
+  color: var(--pink-deep);
+  letter-spacing: 0.02em;
+}
+
+.invite__h2--guest {
+  font-size: 1.6rem;
+  margin-top: 0.5rem;
+}
+
+.invite__section--families {
+  max-width: 640px;
+}
+
+.invite__families {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.85rem, 5vw, 2.65rem);
+  width: 100%;
+}
+
+/* Nhà trai: ảnh trái — chữ phải | Nhà gái: chữ trái — ảnh phải (ảnh ~52%) */
+.invite__family {
+  display: grid;
+  grid-template-columns: minmax(9.25rem, 52%) 1fr;
+  gap: 0.75rem 0.95rem;
+  align-items: center;
+  padding: 0.25rem 0;
+}
+
+.invite__family--bride {
+  grid-template-columns: 1fr minmax(9.25rem, 52%);
+}
+
+.invite__familyPhoto {
+  margin: 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  box-shadow: var(--shadow-sm), 0 14px 36px rgba(70, 52, 40, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  line-height: 0;
+}
+
+.invite__familyPhoto img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.invite__familyText {
+  text-align: center;
+  min-width: 0;
+}
+
+.invite__family .invite__parents {
+  text-align: center;
+  margin-left: 0;
+  margin-right: 0;
+  max-width: none;
+}
+
+@media (max-width: 400px) {
+  .invite__family {
+    grid-template-columns: minmax(7.25rem, 48%) 1fr;
+    gap: 0.55rem 0.65rem;
+  }
+
+  .invite__family--bride {
+    grid-template-columns: 1fr minmax(7.25rem, 48%);
+  }
+}
+
+.invite__familyLabel {
+  font-size: 0.62rem;
+  letter-spacing: 0.26em;
+  color: var(--rose-gold);
+  margin: 0 0 0.3rem;
+  font-weight: 700;
+}
+
+.invite__familyRole {
+  font-size: 0.86rem;
+  margin: 0 0 0.4rem;
+  color: var(--muted);
+}
+
+/* Cùng phông script với dòng "Lan Anh & Tự Chinh" ở hero */
+.invite__personName {
+  font-family: 'Alex Brush', 'Pinyon Script', 'Great Vibes', cursive;
+  font-size: clamp(1.55rem, 4.9vw, 2.05rem);
+  font-weight: 500;
+  font-style: normal;
+  font-synthesis: none;
+  letter-spacing: 0.03em;
+  word-spacing: 0.12em;
+  line-height: 1.35;
+  color: var(--pink-deep);
+  margin: 0 0 0.45rem;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.75), 0 2px 16px rgba(70, 52, 40, 0.09);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.invite__muted {
+  color: var(--muted);
+  margin: 0 0 0.75rem;
+  font-size: 1.05rem;
+}
+
+.invite__parents {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(0.88rem, 2.75vw, 1.05rem);
+  letter-spacing: 0.035em;
+  line-height: 1.55;
+  color: var(--rose-gold);
+  margin: 0 auto;
+  max-width: 22rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.invite__quote {
+  margin: 0;
+  font-size: 1.2rem;
+  line-height: 1.75;
+  font-style: italic;
+  color: var(--text);
+  white-space: pre-line;
+}
+
+.invite__letterLabel {
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--rose-gold);
+  margin: 0 0 0.5rem;
+}
+
+.invite__ceremonyTitle {
+  font-size: clamp(0.75rem, 2.8vw + 0.4rem, 1.5rem);
+  font-weight: 700;
+  color: var(--pink-deep);
+  margin: 0 auto 1rem;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+  text-align: center;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+/* Ba ảnh dưới tiêu đề lễ cưới — ảnh giữa cao & rộng hơn hai bên */
+.invite__ceremonyTrio {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(0.3rem, 1.5vw, 0.65rem);
+  width: 100%;
+  margin: 0 0 1.35rem;
+  padding: 0 0.2rem;
+}
+
+.invite__ceremonyTrio__fig {
+  margin: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  line-height: 0;
+  flex-shrink: 1;
+  box-shadow: var(--shadow-sm), 0 10px 28px rgba(70, 52, 40, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+}
+
+.invite__ceremonyTrio__fig--side {
+  width: clamp(5.5rem, 28vw, 9.75rem);
+}
+
+.invite__ceremonyTrio__fig--center {
+  width: clamp(7.35rem, 38vw, 14rem);
+  box-shadow: var(--shadow-sm), 0 16px 42px rgba(70, 52, 40, 0.16);
+  z-index: 1;
+  position: relative;
+}
+
+.invite__ceremonyTrio__fig img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Khối lễ dưới 3 ảnh — layout 3 cột như mẫu (sans-serif, nền trắng) */
+.invite__ceremonyPanel {
+  margin: 0 auto 1.35rem;
+  max-width: 26rem;
+  padding: 1.65rem 1.15rem 1.5rem;
+  background: #ffffff;
+  border-radius: 32px;
+  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.07);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  color: var(--text);
+  text-align: center;
+}
+
+.invite__ceremonyPanel__title {
+  margin: 0 0 0.45rem;
+  font-size: clamp(1rem, 3.5vw, 1.2rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.25;
+}
+
+.invite__ceremonyPanel__at {
+  margin: 0 0 1.1rem;
+  font-size: 0.94rem;
+  font-weight: 400;
+}
+
+.invite__ceremonyPanel__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: stretch;
+  margin: 0 0 1.05rem;
+}
+
+.invite__ceremonyPanel__col--side {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.4rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.invite__ceremonyPanel__col--mid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem clamp(0.65rem, 3vw, 1.15rem);
+  border-left: 1px solid #c8c8c8;
+  border-right: 1px solid #c8c8c8;
+  min-width: 5.5rem;
+}
+
+.invite__ceremonyPanel__weekday {
+  font-size: 0.84rem;
+  font-weight: 500;
+  margin-bottom: 0.2rem;
+}
+
+.invite__ceremonyPanel__day {
+  font-size: clamp(2.1rem, 9vw, 3.1rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin: 0.1rem 0;
+}
+
+.invite__ceremonyPanel__month {
+  font-size: 0.88rem;
+  font-weight: 500;
+  margin-top: 0.2rem;
+}
+
+.invite__ceremonyPanel__lunar {
+  margin: 0 0 0.95rem;
+  font-size: 0.86rem;
+  font-style: italic;
+  color: #2d2d2d;
+  line-height: 1.45;
+}
+
+.invite__ceremonyPanel__place {
+  margin: 0;
+  font-size: 0.93rem;
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+.invite__dots {
+  margin: 0 0 1.5rem;
+  color: var(--muted);
+  letter-spacing: 0.2em;
+}
+
+.invite__cardsRow {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.invite__detailCard {
+  position: relative;
+  background: linear-gradient(165deg, #ffffff 0%, #fff9fc 100%);
+  border-radius: var(--radius);
+  padding: 1.45rem 1.2rem 1.35rem;
+  box-shadow: var(--shadow-sm), 0 16px 40px rgba(70, 52, 40, 0.07);
+  border: 1px solid rgba(70, 52, 40, 0.08);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  overflow: hidden;
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+
+.invite__detailCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(52%, 11rem);
+  height: 3px;
+  border-radius: 0 0 6px 6px;
+  background: linear-gradient(90deg, transparent, var(--pink-mid), transparent);
+  opacity: 0.75;
+}
+
+.invite__detailCard:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm), 0 22px 48px rgba(70, 52, 40, 0.1);
+}
+
+.invite__detailStrong {
+  font-weight: 700;
+  color: var(--pink-deep);
+}
+
+.invite__small {
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.invite__cardDate,
+.invite__cardTime {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--pink-deep);
+  margin: 0.35rem 0;
+}
+
+.invite__cardBadge {
+  margin: 1rem 0 0;
+  padding-top: 0.85rem;
+  border-top: 1px solid rgba(90, 72, 52, 0.12);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  font-size: 0.9rem;
+  color: var(--rose-gold);
+}
+
+/* Khối Save the Date + lịch (mẫu ảnh 2) */
+.invite__saveBlock {
+  margin-top: 1.75rem;
+  max-width: 22rem;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  color: #1a1a1a;
+}
+
+.invite__receptionBox {
+  text-align: center;
+  padding: 1.35rem 1.1rem 1.25rem;
+  background: #f5f1e9;
+  border: 1px solid #1a1a1a;
+  border-radius: 18px;
+  margin-bottom: 1.5rem;
+}
+
+.invite__receptionBox__title {
+  margin: 0 0 0.55rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.35;
+}
+
+.invite__receptionBox__time {
+  margin: 0 0 0.45rem;
+  font-size: 0.92rem;
+  font-weight: 400;
+}
+
+.invite__receptionBox__date {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1rem, 3.8vw, 1.2rem);
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  word-spacing: 0.15em;
+}
+
+.invite__receptionBox__lunar {
+  margin: 0 0 0.55rem;
+  font-size: 0.84rem;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+.invite__receptionBox__place {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+.invite__stdHead {
+  text-align: center;
+  margin-bottom: 0.85rem;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.invite__stdHead__label {
+  margin: 0 0 0.2rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.38em;
+  color: var(--rose-gold);
+}
+
+.invite__stdHead__month {
+  margin: 0;
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--pink-deep);
+  letter-spacing: 0.06em;
+}
+
+.invite__cal {
+  background: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+}
+
+.invite__cal__weekRow {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0;
+  background: var(--pink-soft);
+  padding: 0.55rem 0.25rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.invite__cal__weekday {
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.invite__cal__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0;
+  padding: 0.35rem 0.25rem 0.65rem;
+}
+
+.invite__cal__cell {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.82rem;
+  min-height: 2rem;
+}
+
+.invite__cal__cell--sun .invite__cal__num {
+  font-weight: 700;
+}
+
+.invite__cal__cell--heart {
+  position: relative;
+}
+
+.invite__cal__cell--heart .invite__cal__num {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.65rem;
+  min-height: 1.65rem;
+  color: #1a1a1a;
+  font-weight: 700;
+}
+
+/* Viền trái tim (SVG) thay cho hình tròn */
+.invite__cal__cell--heart::after {
+  content: '';
+  position: absolute;
+  width: 2.15rem;
+  height: 1.95rem;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23c2185b' stroke-width='1.35' stroke-linejoin='round' d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E")
+    no-repeat center / contain;
+  pointer-events: none;
+  opacity: 0.95;
+}
+
+.invite__cal__foot {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 0.75rem 0.65rem;
+  gap: 0.35rem;
+}
+
+.invite__cal__footLine {
+  flex: 1;
+  max-width: 42%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.35));
+  border-radius: 1px;
+}
+
+.invite__cal__footHeart {
+  font-size: 0.75rem;
+  color: #c2185b;
+  line-height: 1;
+  transform: translateY(1px);
+}
+
+/* --- Địa điểm: thẻ trắng mái vòm + bản đồ (layout như mẫu) --- */
+.invite__venueSection {
+  padding: clamp(1.75rem, 5vw, 2.75rem) 1.25rem clamp(2.25rem, 6vw, 3.25rem);
+  background: var(--pink-bg);
+}
+
+.invite__venueCard {
+  position: relative;
+  max-width: min(100%, 420px);
+  margin: 0 auto;
+  background: var(--white);
+  border-radius: min(12rem, 45vw) min(12rem, 45vw) 18px 18px;
+  box-shadow:
+    0 4px 24px rgba(55, 42, 30, 0.07),
+    0 14px 48px rgba(0, 0, 0, 0.06),
+    0 0 0 1px rgba(100, 80, 55, 0.08);
+  overflow: visible;
+}
+
+.invite__venueCard__squiggle {
+  position: absolute;
+  top: -0.35rem;
+  right: 0.15rem;
+  width: 7.5rem;
+  height: 2.75rem;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.invite__venueCard__squiggleSvg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.invite__venueCard__squigglePath {
+  stroke: #1a1a1a;
+}
+
+.invite__venueCard__squiggleHeart {
+  fill: #1a1a1a;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 11px;
+}
+
+.invite__venueCard__arch {
+  text-align: center;
+  padding: clamp(1.85rem, 5vw, 2.35rem) 1.35rem 0.35rem;
+}
+
+.invite__venueCard__title {
+  margin: 0;
+  font-family: 'Great Vibes', 'Alex Brush', cursive;
+  font-size: clamp(1.85rem, 5.5vw, 2.35rem);
+  font-weight: 400;
+  color: #1a1a1a;
+  line-height: 1.15;
+}
+
+.invite__venueCard__body {
+  padding: 0 1.15rem 1.2rem;
+}
+
+.invite__venueRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+
+.invite__venuePin {
+  position: relative;
+  flex-shrink: 0;
+  width: 3.1rem;
+  height: 3.1rem;
+  margin-top: 0.15rem;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  background: linear-gradient(160deg, #ff6ba8 0%, #e91e8c 45%, #c2185b 100%);
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.14), 0 6px 14px rgba(90, 55, 50, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.invite__venuePin__heart {
+  transform: rotate(45deg);
+  color: var(--white);
+  font-size: 1.05rem;
+  line-height: 1;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
+}
+
+.invite__venueCol {
+  flex: 1;
+  min-width: 0;
+}
+
+.invite__venueCard__name {
+  margin: 0 0 0.35rem;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: clamp(0.82rem, 2.8vw, 0.95rem);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  line-height: 1.35;
+  color: #1a1a1a;
+  text-transform: uppercase;
+}
+
+.invite__venueCard__addr {
+  margin: 0;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #2a2a2a;
+}
+
+.invite__venueCard__btn {
+  display: inline-block;
+  margin-top: 0.85rem;
+  padding: 0.52rem 1.2rem;
+  border-radius: 10px;
+  background: var(--white);
+  color: #1a1a1a;
+  text-decoration: none;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border: 1px solid rgba(70, 52, 40, 0.12);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+
+.invite__venueCard__btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1);
+}
+
+.invite__venueCard__btn:focus-visible {
+  outline: 2px solid var(--pink-mid);
+  outline-offset: 2px;
+}
+
+.invite__venueMap {
+  position: relative;
+  margin-top: 1.15rem;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.1);
+  background: #e8e8e8;
+}
+
+.invite__venueMap__open {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 1;
+  padding: 0.38rem 0.65rem;
+  border-radius: 7px;
+  background: var(--white);
+  color: #1a73e8;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+  transition: background 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+
+.invite__venueMap__open:hover {
+  background: #f8f9ff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.14);
+}
+
+.invite__venueMap__open:focus-visible {
+  outline: 2px solid var(--pink-mid);
+  outline-offset: 2px;
+}
+
+.invite__venueMap__frame {
+  display: block;
+  width: 100%;
+  height: clamp(200px, 48vw, 240px);
+  border: 0;
+}
+
+/* Album hình cưới — dưới bản đồ, header script + line + ♥, lưới 2 cột dọc */
+.invite__albumSection {
+  padding-top: clamp(1.35rem, 4vw, 1.85rem);
+  text-align: left;
+}
+
+.invite__albumHead {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  width: 100%;
+  margin: 0 0 0.9rem;
+}
+
+.invite__albumTitle {
+  margin: 0;
+  flex-shrink: 0;
+  font-family: 'Great Vibes', 'Alex Brush', cursive;
+  font-size: clamp(1.85rem, 5.5vw, 2.25rem);
+  font-weight: 400;
+  color: #1a1a1a;
+  line-height: 1.05;
+}
+
+.invite__albumHead__rail {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-width: 0;
+}
+
+.invite__albumHead__line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.06));
+}
+
+.invite__albumHead__heart {
+  flex-shrink: 0;
+  font-size: 0.65rem;
+  color: #1a1a1a;
+  line-height: 1;
+}
+
+.invite__albumBoard {
+  width: 100%;
+  background: var(--white);
+  padding: 8px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.invite__album {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.invite__albumFig {
+  margin: 0;
+  border-radius: 0;
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  border: none;
+  box-shadow: none;
+  transition: none;
+}
+
+.invite__albumFig:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.invite__albumFig img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.35s var(--ease);
+}
+
+.invite__albumFig:hover img {
+  transform: scale(1.03);
+}
+
+/* CTA dưới album — ảnh hiển thị trọn khung (không crop), nút đè đáy */
+.invite__ctaBand {
+  position: relative;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  overflow: hidden;
+}
+
+.invite__ctaBand__img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.invite__ctaBand__shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 35%,
+    rgba(255, 255, 255, 0.2) 55%,
+    rgba(255, 248, 252, 0.78) 100%
+  );
+  pointer-events: none;
+}
+
+.invite__ctaBand__content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.9rem;
+  padding: 2rem 1.35rem 2.65rem;
+}
+
+.invite__ctaBtn {
+  width: 100%;
+  padding: 0.92rem 1.2rem;
+  border-radius: 999px;
+  border: none;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  line-height: 1.35;
+  text-transform: uppercase;
+  color: #141414;
+  cursor: pointer;
+  box-shadow: 0 5px 22px rgba(0, 0, 0, 0.16);
+  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease), filter 0.2s;
+}
+
+.invite__ctaBtn--rsvp {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(228, 226, 230, 0.88));
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.invite__ctaBtn--gift {
+  background: linear-gradient(180deg, #fdeef4 0%, #f9c9dc 100%);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 5px 22px rgba(70, 52, 40, 0.16);
+}
+
+.invite__ctaBtn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.02);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+}
+
+.invite__ctaBtn--gift:hover {
+  filter: brightness(1.03);
+  box-shadow: 0 8px 28px rgba(90, 55, 50, 0.22);
+}
+
+.invite__ctaBtn:focus-visible {
+  outline: 2px solid var(--pink-mid);
+  outline-offset: 3px;
+}
+
+.invite__footer {
+  text-align: center;
+  padding: 2rem 1.25rem 5rem;
+  background: linear-gradient(180deg, var(--cream) 0%, var(--pink-soft) 100%);
+}
+
+.invite__footerBrand {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--pink-deep);
+  margin: 0 0 0.5rem;
+  letter-spacing: 0.04em;
+}
+
+.invite__footerPipe {
+  color: var(--rose-gold);
+  margin-right: 0.25rem;
+}
+
+.invite__footerWelcome {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+  color: var(--muted);
+}
+
+.invite__sendNow {
+  padding: 0.6rem 1.85rem;
+  border-radius: 999px;
+  border: 2px solid var(--pink-deep);
+  background: rgba(255, 255, 255, 0.5);
+  color: var(--pink-deep);
+  font-family: inherit;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: background 0.2s var(--ease), color 0.2s, transform 0.2s var(--ease), box-shadow 0.2s;
+}
+
+.invite__sendNow:hover {
+  background: var(--pink-deep);
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(90, 55, 50, 0.2);
+}
+
+.invite__sendNow:focus-visible {
+  outline: 2px solid var(--pink-mid);
+  outline-offset: 3px;
+}
+
+/* Modal */
+.invite__modalRoot {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.invite__modalBackdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(45, 28, 26, 0.42);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: inviteFadeIn 0.25s var(--ease) both;
+}
+
+.invite__modal {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+  background: linear-gradient(180deg, #ffffff 0%, #faf7f0 100%);
+  border-radius: var(--radius);
+  padding: 1.85rem 1.45rem;
+  box-shadow: var(--shadow-lift), 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+  text-align: center;
+  border: 1px solid rgba(70, 52, 40, 0.1);
+  animation: inviteModalIn 0.35s var(--ease) both;
+}
+
+@keyframes inviteFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes inviteModalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.invite__modalTitle {
+  font-size: 1.35rem;
+  color: var(--pink-deep);
+  margin: 0 0 1rem;
+}
+
+.invite__modalQ {
+  margin: 0 0 1rem;
+  font-size: 1.05rem;
+}
+
+.invite__rsvpOpts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-bottom: 1.25rem;
+}
+
+.invite__rsvpBtn {
+  padding: 0.78rem 1rem;
+  border-radius: 14px;
+  border: 2px solid rgba(70, 52, 40, 0.16);
+  background: var(--cream);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, transform 0.2s var(--ease);
+}
+
+.invite__rsvpBtn:hover {
+  border-color: rgba(90, 55, 50, 0.35);
+  transform: translateY(-1px);
+}
+
+.invite__rsvpBtn--on {
+  border-color: var(--pink-deep);
+  background: var(--pink-soft);
+  color: var(--pink-deep);
+  font-weight: 700;
+}
+
+.invite__modalFooterBtns {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.invite__modalSend {
+  width: 100%;
+  padding: 0.72rem;
+  border-radius: 14px;
+  border: 2px solid rgba(90, 55, 50, 0.32);
+  background: var(--white);
+  color: var(--pink-deep);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.9) inset;
+  transition: border-color 0.2s, background 0.2s, transform 0.2s var(--ease);
+}
+
+.invite__modalSend:hover {
+  border-color: var(--pink-deep);
+  background: var(--pink-soft);
+  transform: translateY(-1px);
+}
+
+.invite__modalSend:focus-visible {
+  outline: 2px solid var(--pink-mid);
+  outline-offset: 2px;
+}
+
+.invite__bankLine {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 0 0.65rem;
+  line-height: 1.45;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.invite__bankNumber {
+  margin: 0 0 1rem;
+  font-family: ui-monospace, 'Cascadia Code', 'Segoe UI', system-ui, sans-serif;
+  font-size: clamp(1.35rem, 4.5vw, 1.65rem);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #1a1a1a;
+  line-height: 1.3;
+  user-select: all;
+}
+
+.invite__bankImg {
+  display: block;
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+  margin: 0 auto 1.25rem;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.invite__modalClose {
+  width: 100%;
+  padding: 0.72rem;
+  border-radius: 14px;
+  border: none;
+  background: linear-gradient(165deg, var(--pink-mid) 0%, var(--pink-deep) 100%);
+  color: var(--white);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset;
+  transition: filter 0.2s, transform 0.2s var(--ease);
+}
+
+.invite__modalClose:hover {
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+}
+
+.invite__modalClose:focus-visible {
+  outline: 2px solid var(--pink-mid);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .invite__music,
+  .invite__heroPhoto img,
+  .invite__timeBlock,
+  .invite__detailCard,
+  .invite__albumFig,
+  .invite__albumFig img,
+  .invite__venueCard__btn,
+  .invite__ctaBtn,
+  .invite__sendNow,
+  .invite__rsvpBtn,
+  .invite__modalSend,
+  .invite__modalClose,
+  .invite__modalBackdrop,
+  .invite__modal {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+
+  .invite__cloud {
+    animation: none !important;
+    opacity: 0.35;
+    transform: none;
+  }
+
+  .invite__heroPhoto:hover img,
+  .invite__albumFig:hover img {
+    transform: none;
+  }
+}
