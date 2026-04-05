@@ -46,7 +46,7 @@ const INVITE = {
     right: `${process.env.PUBLIC_URL}/Anh/Anhphai.jpg`,
   },
   ceremony: {
-    title: 'LỄ VU QUY',
+    title: 'LỄ THÀNH HÔN',
     at: 'Vào Lúc',
     timeDetail: '13 giờ 00',
     year: 'Năm 2026',
@@ -57,7 +57,7 @@ const INVITE = {
     place: 'Tại Tư Gia Nhà Trai',
   },
   reception: {
-    title: 'TIỆC MỪNG LỄ VU QUY',
+    title: 'TIỆC MỪNG LỄ THÀNH HÔN',
     timeWeekday: '10:30 - Chủ Nhật',
     /** Ngày dạng khoảng trắng giữa các ký tự như mẫu */
     dateSpaced: '12.04.2026',
